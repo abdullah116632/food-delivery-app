@@ -9,6 +9,7 @@ import LoginPopup from './components/LoginPopup/LoginPopup'
 import Verify from './pages/Verify/Verify'
 import MyOrders from './pages/Myorders/Myorders'
 import Profile from './pages/Profile/Profile'
+import NotFound from './pages/NotFound/NotFound'
 
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
@@ -24,6 +25,7 @@ const App = () => {
         <Route path='/verify' element={<Verify />} />
         <Route path='/myorders' element={<MyOrders />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
     <Footer />

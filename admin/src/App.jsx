@@ -30,12 +30,12 @@ const App = () => {
       <ToastContainer />
       {isLoggedIn ? (
         <>
-          <Navbar />
+          <Navbar setIsLoggedIn={setIsLoggedIn} setToken={setToken}/>
           <hr />
           <div className="app-content">
             <Sidebar />
             <Routes>
-              <Route path="*" element={<Navigate to="/list" />} />
+              <Route path="*" element={<Navigate to="/list" setIsLoggedIn={setIsLoggedIn} setToken={setToken} />} />
               <Route path="/list" element={<List />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/add" element={<Add />} />

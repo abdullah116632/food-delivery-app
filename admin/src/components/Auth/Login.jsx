@@ -2,7 +2,6 @@ import React, { useContext, useState } from "react";
 import "./login.css"; // Keeping the same CSS file
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { assets } from "../../assets/assets";
 import { toast } from "react-toastify";
 
 const Login = ({setIsLoggedIn}) => {
@@ -29,7 +28,6 @@ const Login = ({setIsLoggedIn}) => {
     }
     try {
       const response = await axios.post(`${url}/api/admin/login`, data);
-      console.log(response)
       if (response.data.success) {
         // setToken(response.data.token);
         setIsLoggedIn(true);
@@ -51,7 +49,6 @@ const Login = ({setIsLoggedIn}) => {
       <form onSubmit={handleSubmit} className="login-popup-container">
         <div className="login-popup-title">
           <h2>Login</h2>
-          <img src={assets.cross_icon} alt="" onClick={() => navigate("/")} /> {/* Redirects instead of closing popup */}
         </div>
         {error && <p style={{ color: "red" }}>{error}</p>}
         <div className="login-popup-inputs">

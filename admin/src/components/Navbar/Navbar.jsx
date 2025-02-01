@@ -5,9 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { PiDotsThreeOutlineVerticalBold } from "react-icons/pi";
 import { MdAdminPanelSettings } from "react-icons/md";
 import { FaUserShield } from "react-icons/fa";
+import { RiLogoutCircleRFill } from "react-icons/ri";
 
-const Navbar = () => {
+const Navbar = ({setToken, setIsLoggedIn}) => {
   const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setToken("");
+    navigate("/login")
+  }
   
   return (
     <div className="navbar">
@@ -20,6 +28,11 @@ const Navbar = () => {
             <li onClick={() => navigate("/register-new-admin")}>
               <MdAdminPanelSettings className="icon" />
               <p>Create new Admin</p>
+            </li>
+            <hr />
+            <li onClick={logout}>
+            <RiLogoutCircleRFill />
+            <p>Logout</p>
             </li>
           </ul>
         </div>
