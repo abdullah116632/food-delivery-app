@@ -9,21 +9,28 @@ const Verify = () => {
     const [searchParams, setSearchParams] = useSearchParams()
     const success = searchParams.get("success");
     const orderId = searchParams.get("orderId")
-    const {url} = useContext(StoreContext)
+    const {url, token} = useContext(StoreContext)
     const navigate = useNavigate()
 
     const verifyPayment = async () => {
-        const response = await axios.post(url+"/api/order/verify", {success, orderId});
-        if(response.data.success){
-            navigate("/myorders");
-        }else{
-            navigate("/")
-        }
-    }
+      try {
+          const response = await axios.post(url + "/api/order/verify", { success, orderId }, {headers: {token}});
+          if (response.data.success) {
+              navigate("/myorders");
+          } else {
+              navigate("/");
+          }
+      } catch (error) {
+          console.error("Error in verifyPayment:", error.response?.data || error.message);
+      }
+  };
+  
 
     useEffect(()=> {
-        verifyPayment()
-    },[])
+        if(token){
+          verifyPayment()
+        }
+    },[token])
 
   return (
     <div className='verify'>

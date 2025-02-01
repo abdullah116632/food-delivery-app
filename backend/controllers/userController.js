@@ -1,7 +1,7 @@
 import userModel from "../models/userModel.js";
-import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import validator from "validator";
+import createToken from "../util/createJwtToken.js";
 
 
 //login user
@@ -28,10 +28,6 @@ const loginUser = async (req, res) => {
     }
 }
 
-const createToken = (id) => {
-    return jwt.sign({id}, process.env.JWT_SECRET)
-}
-
 //register user
 const registerUser = async (req, res) => {
     const {name, email, password} = req.body;
@@ -49,7 +45,7 @@ const registerUser = async (req, res) => {
             return res.status(400).json({success: false, message: "Please enter a valid email"})
         }
         
-        if(password.length < 8){
+        if(password.length < 6){
             return res.status(400).json({success: false, message: "password must be larger than 8 digit"})
         }
 
@@ -77,4 +73,21 @@ const registerUser = async (req, res) => {
     }
 }
 
-export {loginUser, registerUser};
+const getUserInfo = async (req, res) => {
+    const {userId} = req.body;
+
+    try{
+        const user = await userModel.findOne({_id: userId});
+        if(!user){
+            res.status(404).json({success: false, message: "user not found with this id"});
+            return;
+        }
+
+        res.status(200).json({success: true, user});
+    }catch(e){
+        console.log(e);
+        res.json(400).json({success: false, message: "some error occured"});
+    }
+}
+
+export {loginUser, registerUser, getUserInfo};

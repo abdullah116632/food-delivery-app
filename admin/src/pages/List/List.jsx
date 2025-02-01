@@ -3,8 +3,8 @@ import "./List.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const List = ({url}) => {
-
+const List = () => {
+  const url = import.meta.env.VITE_API_URL;
   const [list, setList] = useState([]);
 
   const fetchList = async () => {
@@ -17,7 +17,7 @@ const List = ({url}) => {
   };
 
   const removeFood = async(foodId)=>{
-    const response = await axios.post(`${url}/api/food/remove`,{id:foodId});
+    const response = await axios.post(`${url}/api/food/remove`,{id:foodId}, {headers: {token: localStorage.getItem("token")}});
     await fetchList();
 
     if(response.data.success){

@@ -4,12 +4,12 @@ import axios from 'axios';
 import {toast} from "react-toastify"
 import { assets } from '../../assets/assets';
 
-const Orders = ({url}) => {
-
+const Orders = () => {
+  const url = import.meta.env.VITE_API_URL;
   const [orders, setOrders] = useState([]);
 
   const fetchAllOrders = async () => {
-    const response = await axios.get(url+"/api/order/list")
+    const response = await axios.get(url+"/api/order/list", {headers: {token: localStorage.getItem("token")}})
     if(response.data.success){
       setOrders(response.data.data);
     }else{
@@ -21,7 +21,7 @@ const Orders = ({url}) => {
     const response = await axios.post(url+"/api/order/status", {
       orderId,
       status: event.target.value
-    })
+    }, {headers: {token: localStorage.getItem("token")}})
     console.log(response)
     if(response.data.success){
       console.log("working")

@@ -3,6 +3,7 @@ import "./Navbar.css";
 import { assets } from "../../assets/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { StoreContext } from "../../context/StoreContext";
+import { FaRegUser } from "react-icons/fa6";
 
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
@@ -19,7 +20,7 @@ const Navbar = ({ setShowLogin }) => {
   return (
     <div className="navbar">
       <Link to="/">
-        <img src={assets.logo} alt="" className="logo" />
+        <img src={assets.logo} alt="" className="logo" onClick={() => setMenu("home")}/>
       </Link>
       <ul className="navbar-menu">
         <Link
@@ -51,7 +52,7 @@ const Navbar = ({ setShowLogin }) => {
           contact us
         </a>
       </ul>
-      <div className="navbar-right">
+      <div className="navbar-right" onClick={() => setMenu("")}>
         <img src={assets.search_icon} alt="" />
         <div className="navbar-search-icon">
           <Link to="/cart">
@@ -73,6 +74,11 @@ const Navbar = ({ setShowLogin }) => {
               <li onClick={logout}>
                 <img src={assets.logout_icon} alt="" />
                 <p>Logout</p>
+              </li>
+              <hr />
+              <li onClick={()=>navigate("/profile")}>
+                <FaRegUser />
+                <p>My profile</p>
               </li>
             </ul>
           </div>

@@ -4,8 +4,9 @@ import { assets } from '../../assets/assets';
 import axios from "axios"
 import { toast } from 'react-toastify';
 
-const Add = ({url}) => {
+const Add = () => {
 
+    const url = import.meta.env.VITE_API_URL;
     const [image, setImage] = useState(false);
     const [data, setData] = useState({
       name: "",
@@ -29,7 +30,7 @@ const Add = ({url}) => {
       formData.append("category", data.category);
       formData.append("image", image);
 
-      const response = await axios.post(`${url}/api/food/add`, formData);
+      const response = await axios.post(`${url}/api/food/add`, formData, {headers: {token: localStorage.getItem("token")}});
       if(response.data.success){
         setData({
           name: "",
