@@ -51,6 +51,11 @@
 The frontend of this project is hosted on **Netlify**. You can access it here:  
 🔗 [Live Demo](https://quickfoods.netlify.app/)
 
+## 📸 Screenshots
+| **User Interface** | **Admin Dashboard** |
+|-------------------|-------------------|
+| ![User UI](https://res.cloudinary.com/dp0zdj77w/image/upload/v1743141426/forReadme/Screenshot_2025-03-28_115541_vaahim.png) | ![Admin UI](https://res.cloudinary.com/dp0zdj77w/image/upload/v1742364684/forReadme/Screenshot_2025-02-01_153128_ub48b6.png) |
+
 
 ## 📂 Folder Structure
 ```
@@ -147,10 +152,7 @@ FRONTEND_URL=your_frontend_url
 - 🚴 Integrate **delivery partner management**  
 - 📝 Enhance **review & rating system**  
 
-## 📸 Screenshots
-| **User Interface** | **Admin Dashboard** |
-|-------------------|-------------------|
-| ![User UI](https://res.cloudinary.com/dp0zdj77w/image/upload/v1742364795/forReadme/Screenshot_2025-02-01_152753_g9rejm.png) | ![Admin UI](https://res.cloudinary.com/dp0zdj77w/image/upload/v1742364684/forReadme/Screenshot_2025-02-01_153128_ub48b6.png) |
+
 
 ## 📜 License
 This project is open-source and available for learning purposes.
